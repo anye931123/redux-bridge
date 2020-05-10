@@ -39,18 +39,12 @@ function useSelectorWithStore<T>(selector: string[], store: any, controlUpdate?:
                 storeState= get(storeState,stateDeep,storeState)
             }
             const nextSelectedState = handleState(prevSelector.current, storeState)
-            if (shallowEqual(nextSelectedState, prevSelectedState.current)) {
-                return
-            }
             prevStoreState.current = storeState
             prevSelectedState.current = nextSelectedState
-            if (controlUpdate) {
-                if (controlUpdate(prevSelectedState.current, nextSelectedState)) {
-                    forceRender()
-                }
-            } else {
-                forceRender()
+            if (shallowEqual(nextSelectedState, prevSelectedState.current)||controlUpdate&&!controlUpdate(prevSelectedState.current, nextSelectedState)) {
+                return
             }
+                forceRender()
         }
         const unsubscribe = store.subscribe(checkForUpdates)
         return unsubscribe
