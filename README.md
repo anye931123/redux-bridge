@@ -1,5 +1,5 @@
 # redux-bridge
-简版react-redux，作为redux与组价之间的桥梁，声明式state获取，实现shouldComponentUpdate功能方法，Hooks Api操作简单方便。
+Redux与组件之间的桥梁，声明式获取state，使用简单，通过useSelector获取store中你需要的一个或者一组state，通过controlUpdate回调方法，实现shouldComponentUpdate内控渲染。
 
 [![npm package](https://img.shields.io/npm/v/redux-bridge.svg?style=flat-square)](https://www.npmjs.org/package/redux-bridge)
 ## Installation
