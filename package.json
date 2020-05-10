@@ -1,0 +1,28 @@
+{
+  "name": "redux-bridge",
+  "version": "1.0.0",
+  "description": "redux与组件的简单桥接工具",
+  "main": "index.ts",
+  "files": [
+    "lib"
+  ],
+  "repository": "https://github.com/anye931123/redux-bridge.git",
+  "author": "anye931123 <1278998669@qq.com>",
+  "keywords": [
+    "hooks",
+    "state",
+    "redux"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf lib && tsc"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.34",
+    "react": "^16.8.0",
+    "typescript": "^3.7.3"
+  }
+}
