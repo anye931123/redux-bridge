@@ -17,44 +17,58 @@ import {Provider,useSelector,useDispatch} from 'redux-bridge';
 
 
 // 1️⃣ Create the store
-const reducer=(state,action)=>state
-const store = createStore(reducer);
+const reducer=(state,action)=> {
+    switch (action.type) {
+        case 'add':
+            return {
+                count: ++state.count
+            }
+        case 'subtract':
+            return {
+                count: --state.count
+            }
+        default:
+            return state
+    }
+
+}
+const store = createStore(reducer,{count:0});
 
 
 
 function Counter() {
-  const {count} = useSelector(['count']);
-  const dispatch = useDispatch()
-  return (
-    <div>
-      <span>{count}</span>
-      <button type="button" onClick={()=>dispatch({type:'add'})}>+</button>
-      <button type="button" onClick={()=>dispatch({type:'subtract'})}>-</button>
-    </div>
-  );
+    const {count} = useSelector(['count']);
+    const dispatch = useDispatch()
+    return (
+        <div>
+            <span>{count}</span>
+            <button type="button" onClick={()=>dispatch({type:'add'})}>+</button>
+            <button type="button" onClick={()=>dispatch({type:'subtract'})}>-</button>
+        </div>
+    );
 }
 
 function DoubleCounter() {
-  const {count} = useSelector(['count'],(prevState,nextState)=>{
-  return nextState.count%2===0
-});
-  return (
-    <div>
-      <span>{count}</span>
-    </div>
-  );
+    const {count} = useSelector(['count'],(prevState,nextState)=>{
+        return nextState.count%2===0
+    });
+    return (
+        <div>
+            <span>{count}</span>
+        </div>
+    );
 }
 
 
 
 // 4️⃣ Wrap your components with Provider
 function App() {
-  return (
-    <Provider store={store}>
-      <Counter />
-     <DoubleCounter />
-    </Provider>
-  );
+    return (
+        <Provider store={store}>
+            <Counter />
+            <DoubleCounter />
+        </Provider>
+    );
 }
 
 const rootElement = document.getElementById('root');
