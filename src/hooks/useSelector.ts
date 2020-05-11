@@ -50,7 +50,7 @@ function useSelectorWithStore<T>(selector: string[], store: any, controlUpdate?:
         return unsubscribe
     }, [store])
 
-    return selectedState
+    return selectedState as T
 }
 
 export function useSelector<T>(selector: string[], controlUpdate?: ControlUpdate<T>, stateDeep?: string) {
